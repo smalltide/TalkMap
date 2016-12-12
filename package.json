@@ -1,0 +1,30 @@
+{
+  "name": "app_starter",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "antd-mobile": "^0.9.11",
+    "dva": "^1.1.0",
+    "firebase": "^3.6.3",
+    "lodash": "^4.17.2",
+    "react": "15.4.1",
+    "react-dom": "^15.4.1",
+    "react-native": "0.39.1",
+    "react-native-router-flux": "^3.37.0"
+  },
+  "devDependencies": {
+    "babel-jest": "17.0.2",
+    "babel-plugin-import": "^1.1.0",
+    "babel-preset-react-native": "1.9.0",
+    "eslint-config-rallycoding": "^3.1.0",
+    "jest": "17.0.3",
+    "react-test-renderer": "15.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
