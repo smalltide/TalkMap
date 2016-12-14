@@ -5,7 +5,11 @@ const INITIAL_STATE = {
     latitude: 25.064676,
     longitude: 121.544358,
     latitudeDelta: 0.02,
-    longitudeDelta: 0.01,
+    longitudeDelta: 0.01
+  },
+  myLocation: {
+    latitude: 25.064676,
+    longitude: 121.544358
   }
 };
 
@@ -13,9 +17,13 @@ export default {
   namespace: 'Map',
   state: { ...INITIAL_STATE },
   reducers: {
-    regionUpdate(state, action) {
+    updateRegion(state, action) {
       const { region } = action.payload;
       return { ...state, region };
+    },
+    updateMyLocation(state, action) {
+      console.log(action.payload);
+      return { ...state, myLocation: action.payload };
     }
   },
   effects: {},
