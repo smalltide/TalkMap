@@ -17,6 +17,9 @@ iOS
   > cd TalkMap
   > npm install
   > react-native link
+  > cd ios
+  > pod install
+  > cd ..
   > react-native run-ios
 ```
 Android
