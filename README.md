@@ -11,10 +11,18 @@ use react native, firebase, Google Map and dva Framework to create a LBS social 
 6. react-native-router-flux
 7. lodash
 
+iOS
 ```
   > git clone git@github.com:smalltide/TalkMap.git
   > cd TalkMap
   > npm install
+  > react-native link
   > react-native run-ios
+```
+Android
+```
+  > git clone git@github.com:smalltide/TalkMap.git
+  > cd TalkMap
+  > npm install
   > react-native run-android
 ```
