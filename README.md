@@ -17,9 +17,6 @@ iOS
   > cd TalkMap
   > npm install
   > react-native link
-  > cd ios
-  > pod install
-  > cd ..
   > react-native run-ios
 ```
 Android
@@ -27,5 +24,6 @@ Android
   > git clone git@github.com:smalltide/TalkMap.git
   > cd TalkMap
   > npm install
+  > react-native link
   > react-native run-android
 ```
