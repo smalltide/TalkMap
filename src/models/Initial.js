@@ -13,13 +13,11 @@ export default {
   subscriptions: {
     initializeFirebase() {
       const config = {
-        var config = {
-          apiKey: 'AIzaSyBakUPnLpUrujnjaTF62NtuqsAD7NshbMw',
-          authDomain: 'talkmap-46a61.firebaseapp.com',
-          databaseURL: 'https://talkmap-46a61.firebaseio.com',
-          storageBucket: 'talkmap-46a61.appspot.com',
-          messagingSenderId: '320827629895'
-        };
+        apiKey: 'AIzaSyBakUPnLpUrujnjaTF62NtuqsAD7NshbMw',
+        authDomain: 'talkmap-46a61.firebaseapp.com',
+        databaseURL: 'https://talkmap-46a61.firebaseio.com',
+        storageBucket: 'talkmap-46a61.appspot.com',
+        messagingSenderId: '320827629895'
       };
       firebase.initializeApp(config);
     },
