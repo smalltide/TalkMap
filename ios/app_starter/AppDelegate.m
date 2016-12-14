@@ -18,15 +18,6 @@
 {
   NSURL *jsCodeLocation;
 
-  /* Add this if using react-native-config */
-  /* Google Maps API key */
-  NSString *googleAPIKey = [ReactNativeConfig envFor:@"GOOGLE_KEY"];
-  [GMSServices provideAPIKey:googleAPIKey];
-
-  /* Add this if NOT using react-native-config */
-  /* Register your API key */
-  [GMSServices provideAPIKey:@"<insert_your_Google_maps_API_key_here>"];
-
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
