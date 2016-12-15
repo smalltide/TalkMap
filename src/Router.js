@@ -6,9 +6,6 @@ import Splash from './components/Splash';
 
 import LoginForm from './routes/LoginForm';
 import TalkMap from './routes/TalkMap';
-import Hello from './routes/HelloComponent';
-import AsyncHello from './routes/AsyncHelloHelloComponent';
-
 
 const RouterComponent = ({ dispatch }) => {
   function onLogout() {
@@ -39,20 +36,6 @@ const RouterComponent = ({ dispatch }) => {
           key="talkMap"
           component={TalkMap}
           title="TalkMap"
-        />
-
-        <Scene
-          onRight={onLogout}
-          rightTitle="Logout"
-          key="hello"
-          component={Hello}
-          title="Hello"
-        />
-
-        <Scene
-          key="asyncHello"
-          component={AsyncHello}
-          title="AsyncHello"
         />
       </Scene>
     </Router>

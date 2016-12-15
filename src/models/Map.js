@@ -1,5 +1,3 @@
-import { Actions } from 'react-native-router-flux';
-
 const INITIAL_STATE = {
   region: {
     latitude: 25.064676,

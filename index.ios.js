@@ -5,7 +5,6 @@ import dva from 'dva/mobile';
 import Initial from './src/models/Initial';
 import Map from './src/models/Map';
 import Auth from './src/models/Auth';
-import Hello from './src/models/Hello';
 
 import Router from './src/Router';
 
@@ -14,7 +13,6 @@ const app = dva();
 app.model(Initial);
 app.model(Map);
 app.model(Auth);
-app.model(Hello);
 
 app.router(() => <Router />);
 

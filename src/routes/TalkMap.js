@@ -45,6 +45,7 @@ class TalkMap extends Component {
       <MapView
         style={{ flex: 1 }}
         region={this.props.region}
+        showsUserLocation
         onRegionChangeComplete={this.onRegionChange.bind(this)}
       />
     );
