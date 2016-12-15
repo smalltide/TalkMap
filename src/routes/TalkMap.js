@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
 import { connect } from 'dva/mobile';
 import MapView from 'react-native-maps';
 
 class TalkMap extends Component {
   componentDidMount() {
     this.getMyLocation();
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
   }
 
   onRegionChange(region) {
@@ -27,6 +30,14 @@ class TalkMap extends Component {
       () => { },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
+
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      const { longitude, latitude } = position.coords;
+      this.props.dispatch({
+          type: 'Map/updateMyLocation',
+          payload: { longitude, latitude }
+        });
+    });
   }
 
   render() {
@@ -37,7 +48,7 @@ class TalkMap extends Component {
         followsUserLocation
         region={this.props.region}
         onRegionChangeComplete={this.onRegionChange.bind(this)}
-        />
+      />
     );
   }
 }
