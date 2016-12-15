@@ -11,6 +11,7 @@
     "dva": "^1.1.0",
     "firebase": "^3.6.3",
     "lodash": "^4.17.2",
+    "moment": "^2.17.1",
     "react": "15.4.1",
     "react-dom": "^15.4.1",
     "react-native": "0.39.1",

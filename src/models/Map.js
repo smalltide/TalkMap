@@ -1,3 +1,7 @@
+import {
+  updateUserLocation
+} from '../services/Map';
+
 const INITIAL_STATE = {
   region: {
     latitude: 25.064676,
@@ -24,6 +28,10 @@ export default {
       return { ...state, myLocation, region };
     }
   },
-  effects: {},
+  effects: {
+    * updateMyLocation({ payload }, { call }) {
+      yield call(updateUserLocation, payload);
+    }
+  },
   subscriptions: {}
 };

@@ -21,22 +21,22 @@ class TalkMap extends Component {
   getMyLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const { longitude, latitude } = position.coords;
-        this.props.dispatch({
-          type: 'Map/updateMyLocation',
-          payload: { longitude, latitude }
-        });
+        this.updateMyLocation(position);
       },
       () => { },
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
 
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      const { longitude, latitude } = position.coords;
-      this.props.dispatch({
-          type: 'Map/updateMyLocation',
-          payload: { longitude, latitude }
-        });
+      this.updateMyLocation(position);
+    });
+  }
+
+  updateMyLocation(position) {
+    const { longitude, latitude } = position.coords;
+    this.props.dispatch({
+      type: 'Map/updateMyLocation',
+      payload: { longitude, latitude }
     });
   }
 
