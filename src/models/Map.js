@@ -18,12 +18,12 @@ export default {
   state: { ...INITIAL_STATE },
   reducers: {
     updateRegion(state, action) {
-      const { region } = action.payload;
-      return { ...state, region };
+      return { ...state, region: action.payload };
     },
     updateMyLocation(state, action) {
-      console.log(action.payload);
-      return { ...state, myLocation: action.payload };
+      const myLocation = action.payload;
+      const region = { ...state.region, ...myLocation };
+      return { ...state, myLocation, region };
     }
   },
   effects: {},

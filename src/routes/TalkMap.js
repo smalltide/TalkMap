@@ -14,7 +14,7 @@ class TalkMap extends Component {
   onRegionChange(region) {
     this.props.dispatch({
       type: 'Map/updateRegion',
-      payload: { region }
+      payload: region
     });
   }
 
@@ -44,8 +44,6 @@ class TalkMap extends Component {
     return (
       <MapView
         style={{ flex: 1 }}
-        showsUserLocation
-        followsUserLocation
         region={this.props.region}
         onRegionChangeComplete={this.onRegionChange.bind(this)}
       />

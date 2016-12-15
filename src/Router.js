@@ -22,7 +22,7 @@ const RouterComponent = ({ dispatch }) => {
         key="splash"
         hideNavBar
         passProps
-        splashText="Hello Splash"
+        splashText="Talk Map"
         component={Splash}
       />
 
