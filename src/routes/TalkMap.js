@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'dva/mobile';
 import MapView from 'react-native-maps';
+import { View } from 'react-native';
+import {
+  InputItem,
+  Button,
+  Flex
+} from 'antd-mobile';
 
 class TalkMap extends Component {
   componentDidMount() {
@@ -42,12 +48,24 @@ class TalkMap extends Component {
 
   render() {
     return (
-      <MapView
-        style={{ flex: 1 }}
-        region={this.props.region}
-        showsUserLocation
-        onRegionChangeComplete={this.onRegionChange.bind(this)}
-      />
+      <View style={{ flex: 1 }}>
+        <MapView
+          style={{ flex: 10 }}
+          region={this.props.region}
+          showsUserLocation
+          onRegionChangeComplete={this.onRegionChange.bind(this)}
+        />
+        <Flex>
+          <Flex.Item style={{ flex: 7 }}>
+            <InputItem />
+          </Flex.Item>
+          <Flex.Item>
+            <Button style={{ flex: 1, borderRadius: 0 }} type="primary">
+              >
+            </Button>
+          </Flex.Item>
+        </Flex>
+      </View>
     );
   }
 }

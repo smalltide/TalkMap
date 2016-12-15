@@ -4,12 +4,12 @@ use react native, firebase, Google Map and dva Framework to create a LBS social 
 ![alt text](https://github.com/smalltide/TalkMap/blob/master/screenshot.gif "TalkMap")
 
 1. react native
-2. Google firebase
-3. Google Map
-4. dva Framework (React and redux based, lightweight and elm-style framework)
+2. dva Framework (React and redux based, lightweight and elm-style framework)
+3. Google firebase
+4. lodash
 5. antd-mobile GUI Framework
-6. react-native-router-flux
-7. lodash
+6. react-native-maps
+7. react-native-router-flux
 
 iOS
 ```
