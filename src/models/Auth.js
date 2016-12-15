@@ -1,4 +1,8 @@
-import { signInWithEmailAndPassword, signOut } from '../services/Auth';
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  initDBUser
+ } from '../services/Auth';
 
 const INITIAL_STATE = {
   email: '',
@@ -33,7 +37,11 @@ export default {
       yield put({ type: 'showLoading' });
 
       const { email, password } = payload;
-      const { user, err } = yield call(signInWithEmailAndPassword, email, password);
+      const { user, err, isCreate } = yield call(signInWithEmailAndPassword, email, password);
+
+      if (isCreate) {
+        yield call(initDBUser, user);
+      }
 
       if (user) {
         yield put({ type: 'loginSuccess', payload: user });
