@@ -12,3 +12,13 @@ export function updateUserLocation({ latitude, longitude }) {
     lastLocationTime
   });
 }
+
+export function updateUserMessage({ message }) {
+  const { currentUser } = firebase.auth();
+  const lastMessageTime = moment().unix();
+
+  return update(`/users/${currentUser.uid}`, {
+    message,
+    lastMessageTime
+  });
+}

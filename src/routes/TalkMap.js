@@ -9,6 +9,8 @@ import {
 } from 'antd-mobile';
 
 class TalkMap extends Component {
+  state = { message: '' };
+
   componentDidMount() {
     this.getMyLocation();
   }
@@ -22,6 +24,17 @@ class TalkMap extends Component {
       type: 'Map/updateRegion',
       payload: region
     });
+  }
+
+  onSendMessage() {
+     const { message } = this.state;
+
+     this.props.dispatch({
+      type: 'Map/sendMessage',
+      payload: { message }
+    });
+
+    this.setState({ message: '' });
   }
 
   getMyLocation() {
@@ -57,10 +70,17 @@ class TalkMap extends Component {
         />
         <Flex>
           <Flex.Item style={{ flex: 7 }}>
-            <InputItem />
+            <InputItem
+              value={this.state.message}
+              onChange={(value) => this.setState({ message: value })}
+            />
           </Flex.Item>
           <Flex.Item>
-            <Button style={{ flex: 1, borderRadius: 0 }} type="primary">
+            <Button
+              style={{ flex: 1, borderRadius: 0 }}
+              type="primary"
+              onClick={this.onSendMessage.bind(this)}
+            >
               >
             </Button>
           </Flex.Item>

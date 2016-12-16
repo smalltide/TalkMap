@@ -1,5 +1,6 @@
 import {
-  updateUserLocation
+  updateUserLocation,
+  updateUserMessage
 } from '../services/Map';
 
 const INITIAL_STATE = {
@@ -31,7 +32,10 @@ export default {
   effects: {
     * updateMyLocation({ payload }, { call }) {
       yield call(updateUserLocation, payload);
-    }
+    },
+    * sendMessage({ payload }, { call }) {
+      yield call(updateUserMessage, payload);
+    },
   },
   subscriptions: {}
 };
