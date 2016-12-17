@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva/mobile';
 import MapView from 'react-native-maps';
-import { View } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import {
   InputItem,
   Button,
@@ -61,12 +61,24 @@ class TalkMap extends Component {
 
   renderUsersMarker(users) {
     return users.map((user) => {
-      const { uid, displayName, massage, photoURL, latitude, longitude } = user;
+      const { uid, displayName, message, photoURL, online, latitude, longitude } = user;
+      const color = online === 1 ? 'lime' : 'orangered';
       return (
         <MapView.Marker
           key={uid}
           coordinate={{ latitude, longitude }}
-        />
+        >
+          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Image
+              style={{ height: 30, width: 30, borderRadius: 15, borderWidth: 2, borderColor: color }}
+              source={{ uri: photoURL }}
+            />
+            <Text>{displayName}</Text>
+          </View>
+          <MapView.Callout style={{ width: 200, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>{message}</Text>
+          </MapView.Callout>
+        </MapView.Marker>
       );
     });
   }
