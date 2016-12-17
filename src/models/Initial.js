@@ -22,11 +22,9 @@ export default {
     },
     monitorAuth() {
       _.delay(() => {
-        firebase
-          .auth()
-          .onAuthStateChanged((user) => {
-            checkUser(user);
-          });
+        firebase.auth().onAuthStateChanged((user) => {
+          checkUser(user);
+        });
       }, 1500);
     }
   }

@@ -59,6 +59,18 @@ class TalkMap extends Component {
     });
   }
 
+  renderUsersMarker(users) {
+    return users.map((user) => {
+      const { uid, displayName, massage, photoURL, latitude, longitude } = user;
+      return (
+        <MapView.Marker
+          key={uid}
+          coordinate={{ latitude, longitude }}
+        />
+      );
+    });
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -67,7 +79,10 @@ class TalkMap extends Component {
           region={this.props.region}
           showsUserLocation
           onRegionChangeComplete={this.onRegionChange.bind(this)}
-        />
+        >
+          {this.renderUsersMarker(this.props.users)}
+        </MapView>
+
         <Flex>
           <Flex.Item style={{ flex: 7 }}>
             <InputItem
@@ -91,8 +106,8 @@ class TalkMap extends Component {
 }
 
 const mapStateToProps = ({ Map }) => {
-  const { region } = Map;
-  return { region };
+  const { region, myLocation, users } = Map;
+  return { region, myLocation, users };
 };
 
 export default connect(mapStateToProps)(TalkMap);

@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import moment from 'moment';
-import { update } from '../utils/FirebaseRequest';
+import { update, watchNode } from '../utils/FirebaseRequest';
 
 export function updateUserLocation({ latitude, longitude }) {
   const { currentUser } = firebase.auth();
@@ -21,4 +21,8 @@ export function updateUserMessage({ message }) {
     message,
     lastMessageTime
   });
+}
+
+export function watchMapUsers(callback) {
+  return watchNode('/users', callback);
 }
