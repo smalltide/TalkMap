@@ -7,6 +7,7 @@ import {
   Button,
   Flex
 } from 'antd-mobile';
+import { Actions } from 'react-native-router-flux';
 
 class TalkMap extends Component {
   state = { message: '' };
@@ -37,6 +38,10 @@ class TalkMap extends Component {
     this.setState({ message: '' });
   }
 
+  onBubblePress(user) {
+    Actions.groupChat({ title: user.displayName, owner: user });
+  }
+
   getMyLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -60,9 +65,10 @@ class TalkMap extends Component {
   }
 
   renderUsersMarker(users) {
-    return users.map((user) => {
+    return Object.values(users).map((user) => {
       const { uid, displayName, message, photoURL, online, latitude, longitude } = user;
       const color = online === 1 ? 'lime' : 'orangered';
+
       return (
         <MapView.Marker
           key={uid}
@@ -75,7 +81,10 @@ class TalkMap extends Component {
             />
             <Text>{displayName}</Text>
           </View>
-          <MapView.Callout style={{ width: 200, alignItems: 'center', justifyContent: 'center' }}>
+          <MapView.Callout
+            style={{ width: 200, alignItems: 'center', justifyContent: 'center' }}
+            onPress={this.onBubblePress.bind(this, user)}
+          >
             <Text>{message}</Text>
           </MapView.Callout>
         </MapView.Marker>

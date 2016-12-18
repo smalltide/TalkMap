@@ -32,10 +32,7 @@ export default {
       return { ...state, myLocation, region };
     },
     updateUsers(state, action) {
-      const usersObject = action.payload;
-      const users = Object.values(usersObject);
-
-      return { ...state, users };
+      return { ...state, users: action.payload };
     }
   },
   effects: {

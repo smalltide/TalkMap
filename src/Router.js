@@ -6,6 +6,7 @@ import Splash from './components/Splash';
 
 import LoginForm from './routes/LoginForm';
 import TalkMap from './routes/TalkMap';
+import GroupChat from './routes/GroupChat';
 
 const RouterComponent = ({ dispatch }) => {
   function onLogout() {
@@ -28,7 +29,6 @@ const RouterComponent = ({ dispatch }) => {
       </Scene>
 
       <Scene key="main">
-
         <Scene
           initial
           onRight={onLogout}
@@ -36,6 +36,12 @@ const RouterComponent = ({ dispatch }) => {
           key="talkMap"
           component={TalkMap}
           title="TalkMap"
+        />
+
+        <Scene
+          key="groupChat"
+          component={GroupChat}
+          title="Chat"
         />
       </Scene>
     </Router>
