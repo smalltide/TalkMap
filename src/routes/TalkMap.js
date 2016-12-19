@@ -74,7 +74,7 @@ class TalkMap extends Component {
   renderUsersMarker(users) {
     return Object.values(users).map((user) => {
       const { uid, displayName, message, photoURL, online, latitude, longitude } = user;
-      const color = online === 1 ? 'lime' : 'orangered';
+      const color = online === 1 ? 'greenyellow' : 'hotpink';
 
       return (
         <MapView.Marker
