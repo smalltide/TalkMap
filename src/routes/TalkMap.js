@@ -8,6 +8,7 @@ import {
   Flex
 } from 'antd-mobile';
 import { Actions } from 'react-native-router-flux';
+import moment from 'moment';
 
 class TalkMap extends Component {
   state = { message: '' };
@@ -79,6 +80,8 @@ class TalkMap extends Component {
     return Object.values(users).map((user) => {
       const { uid, displayName, message, photoURL, online, latitude, longitude } = user;
       const color = online === 1 ? 'greenyellow' : 'hotpink';
+      const time = moment().unix();
+      const imgKey = `img_${uid}+${time}`;
 
       return (
         <MapView.Marker
@@ -87,6 +90,7 @@ class TalkMap extends Component {
         >
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Image
+              key={imgKey}
               style={{ height: 30, width: 30, borderRadius: 15, borderWidth: 2, borderColor: color }}
               source={{ uri: photoURL }}
             />
