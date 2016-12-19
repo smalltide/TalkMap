@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva/mobile';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import {
   InputItem,
   Button,
@@ -48,9 +48,20 @@ class GroupChat extends Component {
 
   renderChatMessage(messages) {
     return Object.keys(messages).map((key) => {
-      const { displayName, message } = messages[key];
+      const { displayName, message, photoURL } = messages[key];
       return (
-        <Text key={key}>{displayName}: {message}</Text>
+        <View key={key} style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+          <Image
+              style={{ height: 30, width: 30, borderRadius: 15 }}
+              source={{ uri: photoURL }}
+          />
+          <View style={{ marginLeft: 5 }}>
+            <Text style={{ fontSize: 12, color: 'gray' }}>{displayName}</Text>
+            <View style={{ backgroundColor: 'greenyellow', borderRadius: 10, padding: 5 }}>
+            <Text style={{ fontSize: 14 }}>{message}</Text>
+            </View>
+          </View>
+        </View>
       );
     });
   }
@@ -63,18 +74,18 @@ class GroupChat extends Component {
         </View>
 
         <Flex>
-          <Flex.Item style={{ flex: 7 }}>
+          <Flex.Item style={{ flex: 7, borderTopWidth: 1, borderColor: 'lightgray' }}>
             <InputItem
               value={this.state.message}
               onChange={(value) => this.setState({ message: value })}
-              />
+            />
           </Flex.Item>
           <Flex.Item>
             <Button
               style={{ flex: 1, borderRadius: 0 }}
               type="primary"
               onClick={this.onSendMessage.bind(this)}
-              >
+            >
               >
             </Button>
           </Flex.Item>
