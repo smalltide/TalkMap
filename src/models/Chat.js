@@ -3,7 +3,7 @@ import {
 } from '../services/Chat';
 
 const INITIAL_STATE = {
-  messages: []
+  messages: {}
 };
 
 export default {

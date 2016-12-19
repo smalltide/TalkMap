@@ -18,7 +18,7 @@ const INITIAL_STATE = {
     latitude: 25.064676,
     longitude: 121.544358
   },
-  users: []
+  users: {}
 };
 
 export default {

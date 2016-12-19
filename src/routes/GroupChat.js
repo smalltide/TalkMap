@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva/mobile';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ListView } from 'react-native';
 import {
   InputItem,
   Button,
@@ -8,13 +8,18 @@ import {
 } from 'antd-mobile';
 import { watchChatMessage } from '../services/Chat';
 
-
 class GroupChat extends Component {
   state = { message: '' };
 
-  componentDidMount() {
-    const { owner } = this.props;
+  componentWillMount() {
+    const { owner, messages } = this.props;
+    this.createDataSource({ messages });
+
     this.unWatchChatMessage = watchChatMessage(owner, this.onChatMessage.bind(this));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.createDataSource(nextProps);
   }
 
   componentWillUnmount() {
@@ -46,32 +51,51 @@ class GroupChat extends Component {
     this.setState({ message: '' });
   }
 
-  renderChatMessage(messages) {
-    return Object.keys(messages).map((key) => {
-      const { displayName, message, photoURL } = messages[key];
-      return (
-        <View key={key} style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
-          <Image
-              style={{ height: 30, width: 30, borderRadius: 15 }}
-              source={{ uri: photoURL }}
-          />
-          <View style={{ marginLeft: 5 }}>
-            <Text style={{ fontSize: 12, color: 'gray' }}>{displayName}</Text>
-            <View style={{ backgroundColor: 'greenyellow', borderRadius: 10, padding: 5 }}>
+  createDataSource({ messages }) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+
+    this.dataSource = ds.cloneWithRows(messages);
+  }
+
+  renderRow(chatMessage) {
+    const { displayName, message, photoURL } = chatMessage;
+    return (
+      <View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 5 }}>
+        <Image
+          style={{ height: 30, width: 30, borderRadius: 15 }}
+          source={{ uri: photoURL }}
+        />
+        <View style={{ marginLeft: 5 }}>
+          <Text style={{ fontSize: 12, color: 'gray' }}>{displayName}</Text>
+          <View style={{ backgroundColor: 'greenyellow', borderRadius: 10, padding: 5 }}>
             <Text style={{ fontSize: 14 }}>{message}</Text>
-            </View>
           </View>
         </View>
-      );
-    });
+      </View>
+    );
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 10 }}>
-          {this.renderChatMessage(this.props.messages)}
-        </View>
+        <ListView
+          style={{ flex: 10 }}
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+          ref={(listView) => { this.listView = listView; }}
+          onLayout={(event) => {
+            this.listViewHeight = event.nativeEvent.layout.height;
+          }}
+          onContentSizeChange={() => {
+            this.listView.scrollTo({
+              y: this.listView.getMetrics().contentLength - this.listViewHeight,
+              animated: false
+            });
+          }}
+        />
 
         <Flex>
           <Flex.Item style={{ flex: 7, borderTopWidth: 1, borderColor: 'lightgray' }}>
