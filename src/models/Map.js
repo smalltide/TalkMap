@@ -2,6 +2,8 @@ import firebase from 'firebase';
 import {
   updateUserLocation,
   updateUserMessage,
+  updateUserOnlineStatus,
+  updateUserOffStatus,
   watchMapUsers
 } from '../services/Map';
 
@@ -42,6 +44,12 @@ export default {
     * sendMessage({ payload }, { call }) {
       yield call(updateUserMessage, payload);
     },
+    * setUserOnlineStatus({ payload }, { call }) {
+      yield call(updateUserOnlineStatus, payload);
+    },
+    * updateUserOffStatus({ payload }, { call }) {
+      yield call(updateUserOffStatus, payload);
+    }
   },
   subscriptions: {
     monitorUsers({ dispatch }) {
@@ -51,7 +59,7 @@ export default {
           unWatchNode = watchMapUsers((val) => {
             dispatch({ type: 'updateUsers', payload: val });
           });
-        } else {
+        } else if (unWatchNode) {
           unWatchNode();
         }
       });

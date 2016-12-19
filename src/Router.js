@@ -11,6 +11,7 @@ import GroupChat from './routes/GroupChat';
 const RouterComponent = ({ dispatch }) => {
   function onLogout() {
     dispatch({ type: 'Auth/logoutUser' });
+    dispatch({ type: 'Map/updateUserOffStatus' });
   }
 
   return (

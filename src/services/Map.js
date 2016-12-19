@@ -23,6 +23,22 @@ export function updateUserMessage({ message }) {
   });
 }
 
+export function updateUserOnlineStatus() {
+  const { currentUser } = firebase.auth();
+  const nodePath = `/users/${currentUser.uid}`;
+
+  firebase.database().ref(nodePath)
+    .onDisconnect().update({ online: 0 });
+
+  return update(nodePath, { online: 1 });
+}
+
+export function updateUserOffStatus() {
+  const { currentUser } = firebase.auth();
+
+  return update(`/users/${currentUser.uid}`, { online: 0 });
+}
+
 export function watchMapUsers(callback) {
   return watchNode('/users', callback);
 }

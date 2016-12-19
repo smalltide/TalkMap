@@ -14,6 +14,7 @@ class TalkMap extends Component {
 
   componentDidMount() {
     this.getMyLocation();
+    this.setUserOnlineStatus();
   }
 
   componentWillUnmount() {
@@ -28,9 +29,9 @@ class TalkMap extends Component {
   }
 
   onSendMessage() {
-     const { message } = this.state;
+    const { message } = this.state;
 
-     this.props.dispatch({
+    this.props.dispatch({
       type: 'Map/sendMessage',
       payload: { message }
     });
@@ -40,6 +41,12 @@ class TalkMap extends Component {
 
   onBubblePress(user) {
     Actions.groupChat({ title: user.displayName, owner: user });
+  }
+
+  setUserOnlineStatus() {
+    this.props.dispatch({
+      type: 'Map/setUserOnlineStatus'
+    });
   }
 
   getMyLocation() {
@@ -73,18 +80,18 @@ class TalkMap extends Component {
         <MapView.Marker
           key={uid}
           coordinate={{ latitude, longitude }}
-        >
+          >
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Image
               style={{ height: 30, width: 30, borderRadius: 15, borderWidth: 2, borderColor: color }}
               source={{ uri: photoURL }}
-            />
+              />
             <Text>{displayName}</Text>
           </View>
           <MapView.Callout
             style={{ width: 200, alignItems: 'center', justifyContent: 'center' }}
             onPress={this.onBubblePress.bind(this, user)}
-          >
+            >
             <Text>{message}</Text>
           </MapView.Callout>
         </MapView.Marker>
@@ -100,7 +107,7 @@ class TalkMap extends Component {
           region={this.props.region}
           showsUserLocation
           onRegionChangeComplete={this.onRegionChange.bind(this)}
-        >
+          >
           {this.renderUsersMarker(this.props.users)}
         </MapView>
 
@@ -109,14 +116,14 @@ class TalkMap extends Component {
             <InputItem
               value={this.state.message}
               onChange={(value) => this.setState({ message: value })}
-            />
+              />
           </Flex.Item>
           <Flex.Item>
             <Button
               style={{ flex: 1, borderRadius: 0 }}
               type="primary"
               onClick={this.onSendMessage.bind(this)}
-            >
+              >
               >
             </Button>
           </Flex.Item>
