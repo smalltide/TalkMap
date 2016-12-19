@@ -30,7 +30,12 @@ export function updateUserOnlineStatus() {
   firebase.database().ref(nodePath)
     .onDisconnect().update({ online: 0 });
 
-  return update(nodePath, { online: 1 });
+  return watchNode('/.info/connected', (val) => {
+    if (val === true) {
+      update(nodePath, { online: 1 });
+    }
+  });
+  //return update(nodePath, { online: 1 });
 }
 
 export function updateUserOffStatus() {

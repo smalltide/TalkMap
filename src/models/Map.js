@@ -35,6 +35,9 @@ export default {
     },
     updateUsers(state, action) {
       return { ...state, users: action.payload };
+    },
+    clearMapUsers(state) {
+      return { ...state, users: INITIAL_STATE.users };
     }
   },
   effects: {

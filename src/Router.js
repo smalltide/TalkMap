@@ -12,6 +12,7 @@ const RouterComponent = ({ dispatch }) => {
   function onLogout() {
     dispatch({ type: 'Auth/logoutUser' });
     dispatch({ type: 'Map/updateUserOffStatus' });
+    dispatch({ type: 'Map/clearMapUsers' });
   }
 
   return (
