@@ -54,13 +54,17 @@ class TalkMap extends Component {
       (position) => {
         this.updateMyLocation(position);
       },
-      () => { },
+      () => {},
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
 
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      this.updateMyLocation(position);
-    });
+    this.watchID = navigator.geolocation.watchPosition(
+      (position) => {
+        this.updateMyLocation(position);
+      },
+      () => {},
+      { enableHighAccuracy: false, distanceFilter: 10, timeout: 20000, maximumAge: 1000 }
+    );
   }
 
   updateMyLocation(position) {
