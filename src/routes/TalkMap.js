@@ -56,7 +56,7 @@ class TalkMap extends Component {
         this.updateMyLocation(position);
       },
       () => {},
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
     );
 
     this.watchID = navigator.geolocation.watchPosition(
@@ -64,7 +64,7 @@ class TalkMap extends Component {
         this.updateMyLocation(position);
       },
       () => {},
-      { enableHighAccuracy: false, distanceFilter: 10, timeout: 20000, maximumAge: 1000 }
+      { enableHighAccuracy: true, distanceFilter: 10, timeout: 20000, maximumAge: 1000 }
     );
   }
 
