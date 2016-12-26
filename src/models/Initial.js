@@ -18,7 +18,10 @@ export default {
         storageBucket: 'talkmap-46a61.appspot.com',
         messagingSenderId: '320827629895'
       };
-      firebase.initializeApp(config);
+
+      if (firebase.apps.length === 0) {
+        firebase.initializeApp(config);
+      }
     },
     monitorAuth() {
       _.delay(() => {
